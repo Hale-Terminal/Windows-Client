@@ -97,7 +97,7 @@
                    HorizontalAlignment="Right"/>
 
                 <Label Grid.Column="4"
-                   Content="131.38 / 131.39"
+                   Content="{Binding Equity.Spread}"
                    Foreground="White"
                    FontFamily="Arial"
                    FontSize="14"
@@ -166,7 +166,7 @@
                    Margin="5,0,0,0"/>
 
                 <Label Grid.Column="0"
-                   Content="18:30 d"
+                   Content="{Binding Equity.DataTime}"
                    Foreground="DimGray"
                    FontSize="14"
                    FontFamily="Arial"

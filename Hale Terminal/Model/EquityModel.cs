@@ -13,8 +13,10 @@ namespace Hale_Terminal.Model
         public string Description { get; set; }
         public string CurrentPrice { get; set; }
         public string PriceChange { get; set; }
-        public string LastBid { get; set; }
-        public string LastBuy { get; set; }
+
+        public string Spread { get; set; }
+
+        public string DataTime { get; set; }
         public string Volume { get; set; }
         public string OpenPrice { get; set; }
         public string HighPrice { get; set; }

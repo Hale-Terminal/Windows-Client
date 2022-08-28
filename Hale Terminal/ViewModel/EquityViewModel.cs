@@ -16,14 +16,15 @@ namespace Hale_Terminal.ViewModel
 
         public EquityViewModel()
         {
+            
             Equity = new EquityModel{
                 Ticker = "BA US",
                 Name = "BOEING CO/THE",
                 Description = "The Boeing Company, together with its subsidiaries, develops, produces, and markets commercial jet aircraft, as well as provides related support services to the commercial airline industry worldwide. The Company also researches, develops, produces, modifies, and supports information, space, and defense systems, including military aircraft",
                 CurrentPrice = "131.46",
                 PriceChange = "-1.91",
-                LastBid = "131.38",
-                LastBuy = "131.39",
+                Spread = "131.38 / 131.39",
+                DataTime = "17:03 d",
                 Volume = "30,702,692",
                 OpenPrice = "127.115",
                 HighPrice = "131.50",
@@ -53,6 +54,7 @@ namespace Hale_Terminal.ViewModel
                 TotRet = "-64.25%",
                 BetaVsSPX = "1.97"
             };
+            
             
         }
     }
