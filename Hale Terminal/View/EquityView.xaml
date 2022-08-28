@@ -226,11 +226,8 @@
             
         </Grid>
 
-        
+
         <Grid Grid.Row="2">
-
-
-
             <Grid>
                 <TabControl Background="Transparent"
                             BorderThickness="0">
@@ -825,6 +822,7 @@
                         
                     </TabItem>
                     
+                    
                     <TabItem Header="2) Issue Info"
                              Background="DimGray"
                              Width="125"
@@ -835,6 +833,7 @@
                         
                     </TabItem>
                     
+                    
                     <TabItem Header="3) Ratios"
                              Background="DimGray"
                              Width="125"
@@ -844,6 +843,7 @@
                              FontWeight="SemiBold">
 
                     </TabItem>
+        
                     
                     <TabItem Header="4) Revenue / EPS"
                              Background="DimGray"
@@ -854,6 +854,7 @@
                              FontWeight="SemiBold">
 
                     </TabItem>
+                    
                     
                     <TabItem Header="5) Industry Info"
                              Background="DimGray"
