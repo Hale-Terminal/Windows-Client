@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Hale_Terminal.Core;
 
 namespace Hale_Terminal.View
 {
@@ -22,6 +23,10 @@ namespace Hale_Terminal.View
         public LoginWindow()
         {
             InitializeComponent();
+            MainFrame.Navigate(new LoginStartView());
+            //Updater updater = new Updater();
+            //updater.CheckUpdater();
+            //MainFrame.Navigate(new LoginConnectingView());
         }
 
         private void LoginButton_Click(object sender, RoutedEventArgs e)
@@ -43,6 +48,21 @@ namespace Hale_Terminal.View
         private void SettingsButton_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void LoadingButton_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(new LoginStartView());
+        }
+
+        private void ConnectingButton_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(new LoginConnectingView());
+        }
+
+        private void LoginButton_Click_2(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(new LoginView());
         }
     }
 }

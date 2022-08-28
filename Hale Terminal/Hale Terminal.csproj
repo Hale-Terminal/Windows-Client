@@ -17,6 +17,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="squirrel.windows" Version="1.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Resource Include="Images\logo.PNG" />
   </ItemGroup>
 
