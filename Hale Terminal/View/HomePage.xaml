@@ -1,0 +1,16 @@
+﻿<Page x:Class="Hale_Terminal.View.HomePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Hale_Terminal.View"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="700"
+      Title="HomePage"
+      Background="Black">
+
+    <Grid>
+        <Label Content="Home" Foreground="White" FontSize="20"/>
+
+    </Grid>
+</Page>
