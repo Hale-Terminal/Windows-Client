@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Hale_Terminal.View"
       mc:Ignorable="d" 
-      d:DesignHeight="550" d:DesignWidth="740"
+      d:DesignHeight="575" d:DesignWidth="740"
       Title="LoginStartView"
       Background="Black">
 

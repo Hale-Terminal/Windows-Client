@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Hale_Terminal.View"
       mc:Ignorable="d" 
-      d:DesignHeight="550" d:DesignWidth="740"
+      d:DesignHeight="575" d:DesignWidth="740"
       Title="LoginView"
       Background="Black">
 
@@ -13,19 +13,19 @@
         <Label Content="Hale Terminal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="25,10,0,0" Foreground="White" FontSize="32" FontFamily="Arial" FontWeight="Bold"/>
 
         <Label Content="Log in or select" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="25,75,0,0" Foreground="White" FontSize="12" FontFamily="Arial" FontWeight="Bold"/>
-        <Button Style="{DynamicResource OptionButtonStyle}" Content="Advanced Settings" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="120,79,0,0" Foreground="Aqua" FontSize="12" FontWeight="Bold" Background="Transparent" FontFamily="Arial"/>
+        <Button Style="{DynamicResource OptionButtonStyle}" Content="Advanced Settings" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="120,79,0,0" Foreground="Aqua" FontSize="12" FontWeight="Bold" Background="Transparent" FontFamily="Arial" Click="SettingsButton_Click"/>
         <Label Content="to complete installation." HorizontalAlignment="Left" VerticalAlignment="Top" Margin="25,95,0,0" Foreground="White" FontSize="12" FontFamily="Arial" FontWeight="Bold"/>
 
 
         <Label Content="Login" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="25,150,0,0" Foreground="White" FontSize="14" FontWeight="Normal" FontFamily="Arial"/>
-        <TextBox Style="{DynamicResource UsernameTextBoxStyle}" x:Name="UsernameTextBox" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="30,180,0,0" Width="200" FontSize="14" CharacterCasing="Upper"/>
+        <TextBox Style="{DynamicResource UsernameTextBoxStyle}" x:Name="UsernameTextBox" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="30,180,0,0" Width="200" FontSize="14" CharacterCasing="Upper" PreviewMouseLeftButtonDown="UsernameTextBox_Click"/>
         <Label Content="Password" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="25,200,0,0" Foreground="White" FontSize="14" FontWeight="Normal" FontFamily="Arial"/>
-        <PasswordBox Style="{DynamicResource PasswordTextBoxStyle}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="30,230,0,0" Width="200" FontSize="14"/>
-        <Button Style="{DynamicResource LoginButtonStyle}" Content="Login" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="130,265,0,0" Width="100" Height="30" Background="#FF353535" Foreground="White" FontSize="16" FontWeight="Normal" FontFamily="Arial"/>
+        <PasswordBox Style="{DynamicResource PasswordTextBoxStyle}" x:Name="PasswordTextBox" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="30,230,0,0" Width="200" FontSize="14" PreviewMouseLeftButtonDown="PasswordBox_Click"/>
+        <Button Style="{DynamicResource LoginButtonStyle}" x:Name="LoginButton" Content="Login" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="130,265,0,0" Width="100" Height="30" Background="#FF353535" Foreground="White" FontSize="16" FontWeight="Normal" FontFamily="Arial" Click="LoginButton_Click"/>
 
-        <Button Style="{DynamicResource OptionButtonStyle}" Content="Forgot Login Name or Password?" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="25,0,0,150" Foreground="Aqua" FontSize="12" FontWeight="Normal" Background="Transparent" FontFamily="Arial"/>
-        <Button Style="{DynamicResource OptionButtonStyle}" Content="Contact Us" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="25,0,0,125" Foreground="Aqua" FontSize="12" FontWeight="Normal" Background="Transparent" FontFamily="Arial"/>
-        <Button Style="{DynamicResource OptionButtonStyle}" Content="Advanced Settings" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="25,0,0,105" Foreground="Aqua" FontSize="12" FontWeight="Normal" Background="Transparent" FontFamily="Arial"/>
+        <Button Style="{DynamicResource OptionButtonStyle}" Content="Forgot Login Name or Password?" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="25,0,0,145" Foreground="Aqua" FontSize="12" FontWeight="Normal" Background="Transparent" FontFamily="Arial" Click="ForgotLoginButton_Click"/>
+        <Button Style="{DynamicResource OptionButtonStyle}" Content="Contact Us" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="25,0,0,125" Foreground="Aqua" FontSize="12" FontWeight="Normal" Background="Transparent" FontFamily="Arial" Click="ContactUsButton_Click"/>
+        <Button Style="{DynamicResource OptionButtonStyle}" Content="Advanced Settings" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="25,0,0,105" Foreground="Aqua" FontSize="12" FontWeight="Normal" Background="Transparent" FontFamily="Arial" Click="SettingsButton_Click"/>
 
         <Label x:Name="infoLabel" Content="S/N ---  |  Version ---" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="20,0,0,75" Foreground="DimGray" FontSize="12" FontFamily="Arial" FontWeight="Normal"/>
 
@@ -217,9 +217,8 @@
                                 <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Pressed.Border1}"/>
                             </Trigger>
                             <Trigger Property="IsEnabled" Value="false">
-                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background1}"/>
-                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border1}"/>
-                                <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground1}"/>
+                                <Setter Property="Background" TargetName="border" Value="DimGray"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="Transparent"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>

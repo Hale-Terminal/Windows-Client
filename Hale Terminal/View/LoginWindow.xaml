@@ -7,10 +7,9 @@
         Title="Hale Terminal" Height="575" Width="740" Background="Black" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen">
 
     <Grid>
-        <Button Content="Loading" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,0,0,0" Click="LoadingButton_Click"/>
-        <Button Content="Connecting" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="50,0,0,0" Click="ConnectingButton_Click"/>
-        <Button Content="Login" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="100,0,0,0" Click="LoginButton_Click_2"/>
-        <Frame x:Name="MainFrame" Source="LoginStartView.xaml" Margin="0,25,0,0" NavigationUIVisibility="Hidden"/>
+        <Frame x:Name="MainFrame"
+               NavigationUIVisibility="Hidden"
+               Source="{Binding}"/>
     </Grid>
 
     <Window.Resources>

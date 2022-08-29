@@ -23,46 +23,7 @@ namespace Hale_Terminal.View
         public LoginWindow()
         {
             InitializeComponent();
-            MainFrame.Navigate(new LoginStartView());
-            //Updater updater = new Updater();
-            //updater.CheckUpdater();
-            //MainFrame.Navigate(new LoginConnectingView());
-        }
-
-        private void LoginButton_Click(object sender, RoutedEventArgs e)
-        {
-            TerminalWindow terminalWindow = new TerminalWindow();
-            terminalWindow.Show();
-        }
-
-        private void ForgotLoginButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void ContactUsButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void SettingsButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void LoadingButton_Click(object sender, RoutedEventArgs e)
-        {
-            MainFrame.Navigate(new LoginStartView());
-        }
-
-        private void ConnectingButton_Click(object sender, RoutedEventArgs e)
-        {
-            MainFrame.Navigate(new LoginConnectingView());
-        }
-
-        private void LoginButton_Click_2(object sender, RoutedEventArgs e)
-        {
-            MainFrame.Navigate(new LoginView());
+            MainFrame.Source = new Uri("LoginConnectingView.xaml", UriKind.Relative);
         }
     }
 }

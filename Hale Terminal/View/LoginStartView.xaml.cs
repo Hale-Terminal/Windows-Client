@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
+using Hale_Terminal.Core;
 
 namespace Hale_Terminal.View
 {
@@ -23,6 +25,14 @@ namespace Hale_Terminal.View
         public LoginStartView()
         {
             InitializeComponent();
+            var timer = new DispatcherTimer { Interval = TimeSpan.FromSeconds(5) };
+            timer.Start();
+            timer.Tick += (sender, args) =>
+            {
+                timer.Stop();
+                NavigationService ns = NavigationService.GetNavigationService(this);
+                ns.Navigate(new LoginConnectingView());
+            };
         }
     }
 }

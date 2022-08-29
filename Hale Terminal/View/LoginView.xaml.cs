@@ -25,5 +25,42 @@ namespace Hale_Terminal.View
             InitializeComponent();
             UsernameTextBox.Focus();
         }
+
+        private void SettingsButton_Click(object sender, RoutedEventArgs e)
+        {
+            SettingsWindow settingsWindow = new SettingsWindow();
+            settingsWindow.Show();
+        }
+
+        private void ContactUsButton_Click(object sender, RoutedEventArgs e)
+        {
+            ContactUsWindow contactUsWindow = new ContactUsWindow();
+            contactUsWindow.Show();
+        }
+
+        private void ForgotLoginButton_Click(object sender, RoutedEventArgs e)
+        {
+            ForgotLoginWindow forgotLoginWindow = new ForgotLoginWindow();
+            forgotLoginWindow.Show();
+        }
+
+        private void UsernameTextBox_Click(object sender, MouseButtonEventArgs e)
+        {
+            UsernameTextBox.BorderBrush = Brushes.Transparent;
+            PasswordTextBox.BorderBrush = Brushes.Transparent;
+        }
+
+        private void PasswordBox_Click(object sender, MouseButtonEventArgs e)
+        {
+            UsernameTextBox.BorderBrush = Brushes.Transparent;
+            PasswordTextBox.BorderBrush = Brushes.Transparent;
+        }
+
+        private void LoginButton_Click(object sender, RoutedEventArgs e)
+        {
+            UsernameTextBox.IsEnabled = false;
+            PasswordTextBox.IsEnabled = false;
+            LoginButton.IsEnabled = false;
+        }
     }
 }

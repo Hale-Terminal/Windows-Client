@@ -13,10 +13,10 @@
 
         <Canvas HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,5,0,0" Width="15" Height="25" Background="Aqua"/>
         <Label Content="* * *  CONNECTION  STATUS  * * *" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="25,5,0,0" Foreground="White" FontSize="18" FontFamily="Arial" FontWeight="Normal"/>
-        <Label Content="Connecting . . . " HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,35,0,0" Foreground="White" FontSize="18" FontFamily="Arial" FontWeight="Normal"/>
+        <Label x:Name="StatusLabel" Visibility="Hidden" Content="Connecting . . . " HorizontalAlignment="Left" VerticalAlignment="Top" Margin="5,35,0,0" Foreground="White" FontSize="18" FontFamily="Arial" FontWeight="Normal"/>
 
-        <Button Style="{DynamicResource OptionButtonStyle}" Content="Contact Us" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="25,0,0,125" Foreground="Aqua" FontSize="12" FontWeight="Normal" Background="Transparent" FontFamily="Arial"/>
-        <Button Style="{DynamicResource OptionButtonStyle}" Content="Advanced Settings" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="25,0,0,105" Foreground="Aqua" FontSize="12" FontWeight="Normal" Background="Transparent" FontFamily="Arial"/>
+        <Button Style="{DynamicResource OptionButtonStyle}" Content="Contact Us" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="25,0,0,125" Foreground="Aqua" FontSize="12" FontWeight="Normal" Background="Transparent" FontFamily="Arial" Click="ContactUsButton_Click"/>
+        <Button Style="{DynamicResource OptionButtonStyle}" Content="Advanced Settings" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="25,0,0,105" Foreground="Aqua" FontSize="12" FontWeight="Normal" Background="Transparent" FontFamily="Arial" Click="SettingsButton_Click"/>
 
         <Label x:Name="infoLabel" Content="S/N ---  |  Version ---" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="20,0,0,75" Foreground="DimGray" FontSize="12" FontFamily="Arial" FontWeight="Normal"/>
         <TextBlock HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="10,0,10,10" Foreground="Gray" FontSize="10" FontFamily="Arial" Height="60" TextWrapping="Wrap" LineStackingStrategy="BlockLineHeight" LineHeight="17" Text="The HALE TERMINAL service and data products are owned and distributed by Hale Terminal LLC. Hale Terminal LLC provides HALE TERMINAL with global marketing data and operational support and service. Hale Terminal LLC believes the information herien came from reliable sources, but does not guarentee its accuracy. No information or opinion herein constitutes a solicitation of the purchase or sale of securities or commodities."/>
