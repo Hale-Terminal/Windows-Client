@@ -44,10 +44,10 @@ namespace Hale_Terminal
             log.Info("Starting Application");
             base.OnStartup(e);
             StartUp();
-            LoginWindow loginWindow = new LoginWindow();
-            loginWindow.Show();
-            //Window1 window1 = new Window1();
-            //window1.Show();
+            //LoginWindow loginWindow = new LoginWindow();
+            //loginWindow.Show();
+            Window1 window1 = new Window1();
+            window1.Show();
 
         }
 
