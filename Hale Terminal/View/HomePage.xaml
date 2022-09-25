@@ -5,12 +5,25 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Hale_Terminal.View"
       mc:Ignorable="d" 
-      d:DesignHeight="300" d:DesignWidth="700"
+      d:DesignHeight="530" d:DesignWidth="715"
       Title="HomePage"
       Background="Black">
 
     <Grid>
-        <Label Content="Home" Foreground="White" FontSize="20"/>
+        <Label Content="Friday, September 23, 2022" 
+               HorizontalAlignment="Right" 
+               VerticalAlignment="Top" 
+               Margin="0,0,15,0" 
+               Foreground="White"
+               FontSize="18"
+               FontFamily="Arial"/>
+        <Label Content="Thank you for being a client since 2022" 
+               HorizontalAlignment="Right" 
+               VerticalAlignment="Top" 
+               Margin="0,25,15,0" 
+               Foreground="White"
+               FontSize="18"
+               FontFamily="Arial"/>
 
     </Grid>
 </Page>

@@ -8,6 +8,241 @@
       d:DesignHeight="525" d:DesignWidth="700"
       Title="EquityView"
       Background="Black">
+    <Page.Resources>
+        <Style x:Key="FocusVisual">
+            <Setter Property="Control.Template">
+                <Setter.Value>
+                    <ControlTemplate>
+                        <Rectangle Margin="2" StrokeDashArray="1 2" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" SnapsToDevicePixels="true" StrokeThickness="1"/>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <LinearGradientBrush x:Key="TabItem.Static.Background" EndPoint="0,1" StartPoint="0,0">
+            <GradientStop Color="#F0F0F0" Offset="0.0"/>
+            <GradientStop Color="#E5E5E5" Offset="1.0"/>
+        </LinearGradientBrush>
+        <SolidColorBrush x:Key="TabItem.Static.Border" Color="#ACACAC"/>
+        <LinearGradientBrush x:Key="TabItem.MouseOver.Background" EndPoint="0,1" StartPoint="0,0">
+            <GradientStop Color="#ECF4FC" Offset="0.0"/>
+            <GradientStop Color="#DCECFC" Offset="1.0"/>
+        </LinearGradientBrush>
+        <SolidColorBrush x:Key="TabItem.MouseOver.Border" Color="#7EB4EA"/>
+        <SolidColorBrush x:Key="TabItem.Selected.Background" Color="#FFFFFF"/>
+        <SolidColorBrush x:Key="TabItem.Selected.Border" Color="#ACACAC"/>
+        <SolidColorBrush x:Key="TabItem.Disabled.Background" Color="#F0F0F0"/>
+        <SolidColorBrush x:Key="TabItem.Disabled.Border" Color="#D9D9D9"/>
+        <Style x:Key="TabItemStyle1" TargetType="{x:Type TabItem}">
+            <Setter Property="MaxWidth" Value="2000"/>
+            <Setter Property="FocusVisualStyle" Value="{StaticResource FocusVisual}"/>
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="Background" Value="{StaticResource TabItem.Static.Background}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource TabItem.Static.Border}"/>
+            <Setter Property="Margin" Value="0"/>
+            <Setter Property="Padding" Value="6,3,6,3"/>
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+            <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+            <Setter Property="HeaderTemplate" >
+                <Setter.Value>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding}" TextWrapping="Wrap" />
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TabItem}">
+                        <Grid x:Name="templateRoot" SnapsToDevicePixels="true">
+                            <Border x:Name="mainBorder" Background="#FF242424" BorderBrush="Transparent" BorderThickness="1,1,1,0" Margin="0">
+                                <Border x:Name="innerBorder" Background="#FF242424" BorderBrush="Transparent" BorderThickness="1,1,1,0" Margin="-1" Opacity="0"/>
+                            </Border>
+                            <ContentPresenter x:Name="contentPresenter" ContentSource="Header" Focusable="False" HorizontalAlignment="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Self}}" Value="true"/>
+                                    <Condition Binding="{Binding TabStripPlacement, RelativeSource={RelativeSource AncestorType={x:Type TabControl}}}" Value="Left"/>
+                                </MultiDataTrigger.Conditions>
+                                <Setter Property="BorderThickness" TargetName="innerBorder" Value="1,1,0,1"/>
+                                <Setter Property="BorderThickness" TargetName="mainBorder" Value="1,1,0,1"/>
+                            </MultiDataTrigger>
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Self}}" Value="true"/>
+                                    <Condition Binding="{Binding TabStripPlacement, RelativeSource={RelativeSource AncestorType={x:Type TabControl}}}" Value="Bottom"/>
+                                </MultiDataTrigger.Conditions>
+                                <Setter Property="BorderThickness" TargetName="innerBorder" Value="1,0,1,1"/>
+                                <Setter Property="BorderThickness" TargetName="mainBorder" Value="1,0,1,1"/>
+                            </MultiDataTrigger>
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Self}}" Value="true"/>
+                                    <Condition Binding="{Binding TabStripPlacement, RelativeSource={RelativeSource AncestorType={x:Type TabControl}}}" Value="Right"/>
+                                </MultiDataTrigger.Conditions>
+                                <Setter Property="BorderThickness" TargetName="innerBorder" Value="0,1,1,1"/>
+                                <Setter Property="BorderThickness" TargetName="mainBorder" Value="0,1,1,1"/>
+                            </MultiDataTrigger>
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding IsMouseOver, RelativeSource={RelativeSource Self}}" Value="true"/>
+                                    <Condition Binding="{Binding TabStripPlacement, RelativeSource={RelativeSource AncestorType={x:Type TabControl}}}" Value="Top"/>
+                                </MultiDataTrigger.Conditions>
+                                <Setter Property="BorderThickness" TargetName="innerBorder" Value="1,1,1,0"/>
+                                <Setter Property="BorderThickness" TargetName="mainBorder" Value="1,1,1,0"/>
+                            </MultiDataTrigger>
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding IsEnabled, RelativeSource={RelativeSource Self}}" Value="false"/>
+                                    <Condition Binding="{Binding TabStripPlacement, RelativeSource={RelativeSource AncestorType={x:Type TabControl}}}" Value="Left"/>
+                                </MultiDataTrigger.Conditions>
+                                <Setter Property="Opacity" TargetName="contentPresenter" Value="0.56"/>
+                                <Setter Property="Background" TargetName="mainBorder" Value="{StaticResource TabItem.Disabled.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="mainBorder" Value="{StaticResource TabItem.Disabled.Border}"/>
+                                <Setter Property="BorderThickness" TargetName="innerBorder" Value="1,1,0,1"/>
+                                <Setter Property="BorderThickness" TargetName="mainBorder" Value="1,1,0,1"/>
+                            </MultiDataTrigger>
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding IsEnabled, RelativeSource={RelativeSource Self}}" Value="false"/>
+                                    <Condition Binding="{Binding TabStripPlacement, RelativeSource={RelativeSource AncestorType={x:Type TabControl}}}" Value="Bottom"/>
+                                </MultiDataTrigger.Conditions>
+                                <Setter Property="Opacity" TargetName="contentPresenter" Value="0.56"/>
+                                <Setter Property="Background" TargetName="mainBorder" Value="{StaticResource TabItem.Disabled.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="mainBorder" Value="{StaticResource TabItem.Disabled.Border}"/>
+                                <Setter Property="BorderThickness" TargetName="innerBorder" Value="1,0,1,1"/>
+                                <Setter Property="BorderThickness" TargetName="mainBorder" Value="1,0,1,1"/>
+                            </MultiDataTrigger>
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding IsEnabled, RelativeSource={RelativeSource Self}}" Value="false"/>
+                                    <Condition Binding="{Binding TabStripPlacement, RelativeSource={RelativeSource AncestorType={x:Type TabControl}}}" Value="Right"/>
+                                </MultiDataTrigger.Conditions>
+                                <Setter Property="Opacity" TargetName="contentPresenter" Value="0.56"/>
+                                <Setter Property="Background" TargetName="mainBorder" Value="{StaticResource TabItem.Disabled.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="mainBorder" Value="{StaticResource TabItem.Disabled.Border}"/>
+                                <Setter Property="BorderThickness" TargetName="innerBorder" Value="0,1,1,1"/>
+                                <Setter Property="BorderThickness" TargetName="mainBorder" Value="0,1,1,1"/>
+                            </MultiDataTrigger>
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding IsEnabled, RelativeSource={RelativeSource Self}}" Value="false"/>
+                                    <Condition Binding="{Binding TabStripPlacement, RelativeSource={RelativeSource AncestorType={x:Type TabControl}}}" Value="Top"/>
+                                </MultiDataTrigger.Conditions>
+                                <Setter Property="Opacity" TargetName="contentPresenter" Value="0.56"/>
+                                <Setter Property="Background" TargetName="mainBorder" Value="{StaticResource TabItem.Disabled.Background}"/>
+                                <Setter Property="BorderBrush" TargetName="mainBorder" Value="{StaticResource TabItem.Disabled.Border}"/>
+                                <Setter Property="BorderThickness" TargetName="innerBorder" Value="1,1,1,0"/>
+                                <Setter Property="BorderThickness" TargetName="mainBorder" Value="1,1,1,0"/>
+                            </MultiDataTrigger>
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding IsSelected, RelativeSource={RelativeSource Self}}" Value="false"/>
+                                    <Condition Binding="{Binding TabStripPlacement, RelativeSource={RelativeSource AncestorType={x:Type TabControl}}}" Value="Left"/>
+                                </MultiDataTrigger.Conditions>
+                                <Setter Property="BorderThickness" TargetName="innerBorder" Value="1,1,0,1"/>
+                                <Setter Property="BorderThickness" TargetName="mainBorder" Value="1,1,0,1"/>
+                            </MultiDataTrigger>
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding IsSelected, RelativeSource={RelativeSource Self}}" Value="true"/>
+                                    <Condition Binding="{Binding TabStripPlacement, RelativeSource={RelativeSource AncestorType={x:Type TabControl}}}" Value="Left"/>
+                                </MultiDataTrigger.Conditions>
+                                <Setter Property="Panel.ZIndex" Value="1"/>
+                                <Setter Property="Margin" Value="-2,-2,0,-2"/>
+                                <Setter Property="Opacity" TargetName="innerBorder" Value="1"/>
+                                <Setter Property="BorderThickness" TargetName="innerBorder" Value="1,1,0,1"/>
+                                <Setter Property="BorderThickness" TargetName="mainBorder" Value="1,1,0,1"/>
+                            </MultiDataTrigger>
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding IsSelected, RelativeSource={RelativeSource Self}}" Value="false"/>
+                                    <Condition Binding="{Binding TabStripPlacement, RelativeSource={RelativeSource AncestorType={x:Type TabControl}}}" Value="Bottom"/>
+                                </MultiDataTrigger.Conditions>
+                                <Setter Property="BorderThickness" TargetName="innerBorder" Value="1,0,1,1"/>
+                                <Setter Property="BorderThickness" TargetName="mainBorder" Value="1,0,1,1"/>
+                            </MultiDataTrigger>
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding IsSelected, RelativeSource={RelativeSource Self}}" Value="true"/>
+                                    <Condition Binding="{Binding TabStripPlacement, RelativeSource={RelativeSource AncestorType={x:Type TabControl}}}" Value="Bottom"/>
+                                </MultiDataTrigger.Conditions>
+                                <Setter Property="Panel.ZIndex" Value="1"/>
+                                <Setter Property="Margin" Value="-2,0,-2,-2"/>
+                                <Setter Property="Opacity" TargetName="innerBorder" Value="1"/>
+                                <Setter Property="BorderThickness" TargetName="innerBorder" Value="1,0,1,1"/>
+                                <Setter Property="BorderThickness" TargetName="mainBorder" Value="1,0,1,1"/>
+                            </MultiDataTrigger>
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding IsSelected, RelativeSource={RelativeSource Self}}" Value="false"/>
+                                    <Condition Binding="{Binding TabStripPlacement, RelativeSource={RelativeSource AncestorType={x:Type TabControl}}}" Value="Right"/>
+                                </MultiDataTrigger.Conditions>
+                                <Setter Property="BorderThickness" TargetName="innerBorder" Value="0,1,1,1"/>
+                                <Setter Property="BorderThickness" TargetName="mainBorder" Value="0,1,1,1"/>
+                            </MultiDataTrigger>
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding IsSelected, RelativeSource={RelativeSource Self}}" Value="true"/>
+                                    <Condition Binding="{Binding TabStripPlacement, RelativeSource={RelativeSource AncestorType={x:Type TabControl}}}" Value="Right"/>
+                                </MultiDataTrigger.Conditions>
+                                <Setter Property="Panel.ZIndex" Value="1"/>
+                                <Setter Property="Margin" Value="0,-2,-2,-2"/>
+                                <Setter Property="Opacity" TargetName="innerBorder" Value="1"/>
+                                <Setter Property="BorderThickness" TargetName="innerBorder" Value="0,1,1,1"/>
+                                <Setter Property="BorderThickness" TargetName="mainBorder" Value="0,1,1,1"/>
+                            </MultiDataTrigger>
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding IsSelected, RelativeSource={RelativeSource Self}}" Value="false"/>
+                                    <Condition Binding="{Binding TabStripPlacement, RelativeSource={RelativeSource AncestorType={x:Type TabControl}}}" Value="Top"/>
+                                </MultiDataTrigger.Conditions>
+                                <Setter Property="BorderThickness" TargetName="innerBorder" Value="1,1,1,0"/>
+                                <Setter Property="BorderThickness" TargetName="mainBorder" Value="1,1,1,0"/>
+                            </MultiDataTrigger>
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding IsSelected, RelativeSource={RelativeSource Self}}" Value="true"/>
+                                    <Condition Binding="{Binding TabStripPlacement, RelativeSource={RelativeSource AncestorType={x:Type TabControl}}}" Value="Top"/>
+                                </MultiDataTrigger.Conditions>
+                                <Setter Property="BorderThickness" TargetName="innerBorder" Value="1,1,1,0"/>
+                                <Setter Property="BorderThickness" TargetName="mainBorder" Value="1,1,1,0"/>
+                            </MultiDataTrigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="TabControlStyle" TargetType="{x:Type TabControl}">
+            <Setter Property="SnapsToDevicePixels" Value="True"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TabControl}">
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <Border>
+                                <UniformGrid x:Name="HeaderPanel" IsItemsHost="True" Rows="1"/>
+                            </Border>
+
+                            <Border x:Name="Border" Grid.Row="1"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    Background="{TemplateBinding Background}"
+                                    BorderBrush="{TemplateBinding BorderBrush}">
+                                <ContentPresenter x:Name="PART_SelectedContentHost" ContentSource="SelectedContent"/>
+                            </Border>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
 
     <Page.DataContext>
         <viewmodel:EquityViewModel/>
@@ -40,70 +275,71 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
-                <Label Grid.Column="0"
-                   Content="{Binding Equity.Ticker}"
-                   Foreground="White"
-                   FontFamily="Arial"
-                   FontSize="14"
-                   FontWeight="Normal"
-                   VerticalAlignment="Center"
-                       Margin="10,0,0,0"/>
-                
-                <Label Grid.Column="1"
-                   Content="$"
-                   Foreground="DimGray"
-                   FontFamily="Arial"
-                   FontSize="14"
-                   FontWeight="Thin"
-                   VerticalAlignment="Center"
-                   HorizontalAlignment="Left"/>
+                <Viewbox Grid.Column="0">
+                    <TextBlock Text="{Binding Equity.Ticker}"
+                               Foreground="White"
+                               FontFamily="Arial"
+                               FontWeight="Normal"
+                               VerticalAlignment="Center"
+                               Padding="4,4,4,4"/>
+                </Viewbox>
 
-                <Label Grid.Column="4"
-                   Content="N"
-                   Foreground="DimGray"
-                   FontFamily="Arial"
-                   FontSize="12"
-                   FontWeight="Normal"
-                   VerticalAlignment="Bottom"
-                   HorizontalAlignment="Right"
-                       Margin="0,0,15,0"/>
-                
-                <Label Grid.Column="4"
-                   Content="N"
-                   Foreground="DimGray"
-                   FontFamily="Arial"
-                   FontSize="12"
-                   FontWeight="Normal"
-                   VerticalAlignment="Bottom"
-                   HorizontalAlignment="Left"
-                       Margin="15,0,0,0"/>
+                <Viewbox Grid.Column="1" HorizontalAlignment="Left">
+                    <TextBlock Text="$"
+                               Foreground="DimGray"
+                               FontFamily="Arial"
+                               FontWeight="Thin"
+                               VerticalAlignment="Center"
+                               Padding="4,4,4,4"/>
+                </Viewbox>
 
-                <Label Grid.Column="1"
-                   Content="{Binding Equity.CurrentPrice}"
-                   Foreground="Red"
-                   FontFamily="Arial"
-                   FontSize="14"
-                   FontWeight="Normal"
-                   VerticalAlignment="Center"
-                   HorizontalAlignment="Right"/>
+                <Viewbox Grid.Column="4" HorizontalAlignment="Right">
+                    <TextBlock Text="N"
+                               Foreground="DimGray"
+                               FontFamily="Arial"
+                               FontWeight="Thin"
+                               VerticalAlignment="Bottom"
+                               Padding="6,6,6,6"
+                               Margin="0,0,15,0"/>
+                </Viewbox>
 
-                <Label Grid.Column="2"
-                   Content="{Binding Equity.PriceChange}"
-                   Foreground="Red"
-                   FontFamily="Arial"
-                   FontSize="14"
-                   FontWeight="Normal"
-                   VerticalAlignment="Center"
-                   HorizontalAlignment="Right"/>
+                <Viewbox Grid.Column="4" HorizontalAlignment="Left">
+                    <TextBlock Text="N"
+                               Foreground="DimGray"
+                               FontFamily="Arial"
+                               FontWeight="Thin"
+                               VerticalAlignment="Bottom"
+                               Padding="6,6,6,6"
+                               Margin="15,0,0,0"/>
+                </Viewbox>
 
-                <Label Grid.Column="4"
-                   Content="{Binding Equity.Spread}"
-                   Foreground="White"
-                   FontFamily="Arial"
-                   FontSize="14"
-                   FontWeight="Normal"
-                   VerticalAlignment="Center"
-                   HorizontalAlignment="Center"/>
+                <Viewbox Grid.Column="1" HorizontalAlignment="Right">
+                    <TextBlock Text="{Binding Equity.CurrentPrice}"
+                               Foreground="Red"
+                               FontFamily="Arial"
+                               FontWeight="Normal"
+                               VerticalAlignment="Center"
+                               Padding="4,4,4,4"
+                               ToolTip="Last Price (USD) &#x0a;FINRA ADF (D) (x100)"/>
+                </Viewbox>
+
+                <Viewbox Grid.Column="2" HorizontalAlignment="Right">
+                    <TextBlock Text="{Binding Equity.PriceChange}"
+                               Foreground="Red"
+                               FontFamily="Arial"
+                               FontWeight="Normal"
+                               VerticalAlignment="Center"
+                               Padding="4,4,4,4"/>
+                </Viewbox>
+
+                <Viewbox Grid.Column="4" HorizontalAlignment="Center">
+                    <TextBlock Text="{Binding Equity.Spread}"
+                               Foreground="White"
+                               FontFamily="Arial"
+                               FontWeight="Normal"
+                               VerticalAlignment="Center"
+                               Padding="4,4,4,4"/>
+                </Viewbox>
             </Grid>
 
             <Grid Grid.Row="1">
@@ -116,108 +352,125 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
-                <Label Grid.Column="0"
-                   Content="At"
-                   Foreground="Orange"
-                   FontSize="14"
-                   FontFamily="Arial"
-                   FontWeight="Normal"
-                   VerticalAlignment="Center"
-                   Margin="30,0,0,0"/>
-                <Label Grid.Column="1"
-                   Content="Vol"
-                   Foreground="Orange"
-                   FontSize="14"
-                   FontFamily="Arial"
-                   FontWeight="Normal"
-                   VerticalAlignment="Center"
-                   Margin="5,0,0,0"/>
-                <Label Grid.Column="2"
-                   Content="O"
-                   Foreground="Orange"
-                   FontSize="14"
-                   FontFamily="Arial"
-                   FontWeight="Normal"
-                   VerticalAlignment="Center"
-                   Margin="5,0,0,0"/>
-                <Label Grid.Column="3"
-                   Content="H"
-                   Foreground="Orange"
-                   FontSize="14"
-                   FontFamily="Arial"
-                   FontWeight="Normal"
-                   VerticalAlignment="Center"
-                   Margin="5,0,0,0"/>
-                <Label Grid.Column="4"
-                   Content="L"
-                   Foreground="Orange"
-                   FontSize="14"
-                   FontFamily="Arial"
-                   FontWeight="Normal"
-                   VerticalAlignment="Center"
-                   Margin="5,0,0,0"/>
-                <Label Grid.Column="5"
-                   Content="Val"
-                   Foreground="Orange"
-                   FontSize="14"
-                   FontFamily="Arial"
-                   FontWeight="Normal"
-                   VerticalAlignment="Center"
-                   Margin="5,0,0,0"/>
+                <Viewbox Grid.Column="0" HorizontalAlignment="Center">
+                    <TextBlock Text="At"
+                               Foreground="Orange"
+                               FontFamily="Arial"
+                               FontWeight="Normal"
+                               VerticalAlignment="Center"
+                               Padding="4,4,4,4"/>
+                </Viewbox>
 
-                <Label Grid.Column="0"
-                   Content="{Binding Equity.DataTime}"
-                   Foreground="DimGray"
-                   FontSize="14"
-                   FontFamily="Arial"
-                   FontWeight="Light"
-                   VerticalAlignment="Center"
-                   HorizontalAlignment="Right"/>
-                <Label Grid.Column="1"
-                   Content="{Binding Equity.Volume}"
-                   Foreground="White"
-                   FontSize="14"
-                   FontFamily="Arial"
-                   FontWeight="Light"
-                   VerticalAlignment="Center"
-                   HorizontalAlignment="Left"
-                   Margin="35,0,0,0"/>
-                <Label Grid.Column="2"
-                   Content="{Binding Equity.OpenPrice}"
-                   Foreground="White"
-                   FontSize="14"
-                   FontFamily="Arial"
-                   FontWeight="Light"
-                   VerticalAlignment="Center"
-                   HorizontalAlignment="Left"
-                   Margin="25,0,0,0"/>
-                <Label Grid.Column="3"
-                   Content="{Binding Equity.HighPrice}"
-                   Foreground="White"
-                   FontSize="14"
-                   FontFamily="Arial"
-                   FontWeight="Light"
-                   VerticalAlignment="Center"
-                   HorizontalAlignment="Left"
-                   Margin="25,0,0,0"/>
-                <Label Grid.Column="4"
-                   Content="{Binding Equity.LowPrice}"
-                   Foreground="White"
-                   FontSize="14"
-                   FontFamily="Arial"
-                   FontWeight="Light"
-                   VerticalAlignment="Center"
-                   HorizontalAlignment="Left"
-                   Margin="25,0,0,0"/>
-                <Label Grid.Column="5"
-                   Content="{Binding Equity.Valuation}"
-                   Foreground="White"
-                   FontSize="14"
-                   FontFamily="Arial"
-                   FontWeight="Light"
-                   VerticalAlignment="Center"
-                   HorizontalAlignment="Left"
-                   Margin="35,0,0,0"/>
+                <Viewbox Grid.Column="1" HorizontalAlignment="Left">
+                    <TextBlock Text="Vol"
+                               Foreground="Orange"
+                               FontFamily="Arial"
+                               FontWeight="Normal"
+                               VerticalAlignment="Center"
+                               Padding="4,4,4,4"
+                               Margin="5,0,0,0"/>
+                </Viewbox>
+
+                <Viewbox Grid.Column="2" HorizontalAlignment="Left">
+                    <TextBlock Text="O"
+                               Foreground="Orange"
+                               FontFamily="Arial"
+                               FontWeight="Normal"
+                               VerticalAlignment="Center"
+                               Padding="4,4,4,4"
+                               Margin="5,0,0,0"/>
+                </Viewbox>
+
+                <Viewbox Grid.Column="3" HorizontalAlignment="Left">
+                    <TextBlock Text="H"
+                               Foreground="Orange"
+                               FontFamily="Arial"
+                               FontWeight="Normal"
+                               VerticalAlignment="Center"
+                               Padding="4,4,4,4"
+                               Margin="5,0,0,0"/>
+                </Viewbox>
+
+                <Viewbox Grid.Column="4" HorizontalAlignment="Left">
+                    <TextBlock Text="L"
+                               Foreground="Orange"
+                               FontFamily="Arial"
+                               FontWeight="Normal"
+                               VerticalAlignment="Center"
+                               Padding="4,4,4,4"
+                               Margin="5,0,0,0"/>
+                </Viewbox>
+
+                <Viewbox Grid.Column="5" HorizontalAlignment="Left">
+                    <TextBlock Text="Val"
+                               Foreground="Orange"
+                               FontFamily="Arial"
+                               FontWeight="Normal"
+                               VerticalAlignment="Center"
+                               Padding="4,4,4,4"
+                               Margin="5,0,0,0"/>
+                </Viewbox>
+
+
+                <Viewbox Grid.Column="0" HorizontalAlignment="Right">
+                    <TextBlock Text="{Binding Equity.DataTime}"
+                               Foreground="DimGray"
+                               FontFamily="Arial"
+                               FontWeight="Light"
+                               VerticalAlignment="Center"
+                               Padding="4,4,4,4"
+                               Margin="0,0,0,0"/>
+                </Viewbox>
+
+                <Viewbox Grid.Column="1" HorizontalAlignment="Left">
+                    <TextBlock Text="{Binding Equity.Volume}"
+                               Foreground="White"
+                               FontFamily="Arial"
+                               FontWeight="Light"
+                               VerticalAlignment="Center"
+                               Padding="4,4,4,4"
+                               Margin="35,0,0,0"/>
+                </Viewbox>
+
+                <Viewbox Grid.Column="2" HorizontalAlignment="Left">
+                    <TextBlock Text="{Binding Equity.OpenPrice}"
+                               Foreground="White"
+                               FontFamily="Arial"
+                               FontWeight="Light"
+                               VerticalAlignment="Center"
+                               Padding="4,4,4,4"
+                               Margin="25,0,0,0"/>
+                </Viewbox>
+
+                <Viewbox Grid.Column="3" HorizontalAlignment="Left">
+                    <TextBlock Text="{Binding Equity.HighPrice}"
+                               Foreground="White"
+                               FontFamily="Arial"
+                               FontWeight="Light"
+                               VerticalAlignment="Center"
+                               Padding="4,4,4,4"
+                               Margin="25,0,0,0"/>
+                </Viewbox>
+
+                <Viewbox Grid.Column="4" HorizontalAlignment="Left">
+                    <TextBlock Text="{Binding Equity.LowPrice}"
+                               Foreground="White"
+                               FontFamily="Arial"
+                               FontWeight="Light"
+                               VerticalAlignment="Center"
+                               Padding="4,4,4,4"
+                               Margin="35,0,0,0"/>
+                </Viewbox>
+
+                <Viewbox Grid.Column="5" HorizontalAlignment="Left">
+                    <TextBlock Text="{Binding Equity.Valuation}"
+                               Foreground="White"
+                               FontFamily="Arial"
+                               FontWeight="Light"
+                               VerticalAlignment="Center"
+                               Padding="4,4,4,4"
+                               Margin="35,0,0,0"/>
+                </Viewbox>
             </Grid>
         </Grid>
 
@@ -232,9 +485,10 @@
                 <TabControl Background="Transparent"
                             BorderThickness="0">
                     
-                    <TabItem Header="1) Profile"
-                             Background="DimGray"
-                             Width="125"
+                    
+                    <TabItem Style="{DynamicResource TabItemStyle1}" 
+                             Header="1) Profile"
+                             Width="139"
                              Foreground="White"
                              FontFamily="Arial"
                              FontSize="12"
@@ -265,7 +519,8 @@
                            Margin="5,0,5,5"
                            FontFamily="Arial"
                            FontSize="14"
-                           Foreground="Orange"
+                           FontWeight="Medium"
+                           Foreground="White"
                            Text="{Binding Equity.Description}"/>
 
                                 
@@ -286,10 +541,10 @@
                                     </Grid.RowDefinitions>
 
                                     <Border Grid.RowSpan="3"
-                                            BorderBrush="DimGray"
-                                            BorderThickness="0.5"/>
+                                            BorderBrush="#FF242424"
+                                            BorderThickness="1"/>
 
-                                    <Grid Grid.Row="0" Background="DimGray">
+                                    <Grid Grid.Row="0" Background="#FF242424">
                                         <Label Content="8) Price Chart  |  GP >>" 
                                                Foreground="White"
                                                FontFamily="Arial"
@@ -315,56 +570,56 @@
 
                                         <Label Grid.Row="0"
                                                Content="Px/Chg 1D (USD)"
-                                               Foreground="Orange"
+                                               Foreground="White"
                                                FontSize="12"
                                                FontFamily="Arial"
                                                FontWeight="SemiBold"
                                                VerticalAlignment="Center"/>
                                         <Label Grid.Row="1"
                                                Content="52 Wk H    (09/25/19)"
-                                               Foreground="Orange"
+                                               Foreground="White"
                                                FontSize="12"
                                                FontFamily="Arial"
                                                FontWeight="SemiBold"
                                                VerticalAlignment="Center"/>
                                         <Label Grid.Row="2"
                                                Content="52 Wk L    (03/18/20)"
-                                               Foreground="Orange"
+                                               Foreground="White"
                                                FontSize="12"
                                                FontFamily="Arial"
                                                FontWeight="SemiBold"
                                                VerticalAlignment="Center"/>
                                         <Label Grid.Row="3"
                                                Content="YTD Change / %"
-                                               Foreground="Orange"
+                                               Foreground="White"
                                                FontSize="12"
                                                FontFamily="Arial"
                                                FontWeight="SemiBold"
                                                VerticalAlignment="Center"/>
                                         <Label Grid.Row="4"
                                                Content="Mkt Cap    (USD)"
-                                               Foreground="Orange"
+                                               Foreground="White"
                                                FontSize="12"
                                                FontFamily="Arial"
                                                FontWeight="SemiBold"
                                                VerticalAlignment="Center"/>
                                         <Label Grid.Row="5"
                                                Content="Shrs Out / Float"
-                                               Foreground="Orange"
+                                               Foreground="White"
                                                FontSize="12"
                                                FontFamily="Arial"
                                                FontWeight="SemiBold"
                                                VerticalAlignment="Center"/>
                                         <Label Grid.Row="6"
                                                Content="SI / % of Float"
-                                               Foreground="Orange"
+                                               Foreground="White"
                                                FontSize="12"
                                                FontFamily="Arial"
                                                FontWeight="SemiBold"
                                                VerticalAlignment="Center"/>
                                         <Label Grid.Row="7"
                                                Content="Days to Cover"
-                                               Foreground="Orange"
+                                               Foreground="White"
                                                FontSize="12"
                                                FontFamily="Arial"
                                                FontWeight="SemiBold"
@@ -445,8 +700,8 @@
                                     </Grid.RowDefinitions>
 
                                     <Border Grid.RowSpan="2"
-                                            BorderBrush="DimGray"
-                                            BorderThickness="0.5"/>
+                                            BorderBrush="#FF242424"
+                                            BorderThickness="1"/>
 
                                     <Grid Grid.Row="0">
                                         <Grid.RowDefinitions>
@@ -455,7 +710,7 @@
                                         </Grid.RowDefinitions>
 
 
-                                        <Grid Grid.Row="0" Background="DimGray">
+                                        <Grid Grid.Row="0" Background="#FF242424">
                                             <Label Content="9) Estimates  |  EE >>" 
                                                Foreground="White"
                                                FontFamily="Arial"
@@ -476,42 +731,42 @@
 
                                             <Label Grid.Row="0"
                                                Content="Date"
-                                               Foreground="Orange"
+                                               Foreground="White"
                                                FontSize="12"
                                                FontFamily="Arial"
                                                FontWeight="SemiBold"
                                                VerticalAlignment="Center"/>
                                             <Label Grid.Row="1"
                                                Content="P/E"
-                                               Foreground="Orange"
+                                               Foreground="White"
                                                FontSize="12"
                                                FontFamily="Arial"
                                                FontWeight="SemiBold"
                                                VerticalAlignment="Center"/>
                                             <Label Grid.Row="2"
                                                Content="Est P/E"
-                                               Foreground="Orange"
+                                               Foreground="White"
                                                FontSize="12"
                                                FontFamily="Arial"
                                                FontWeight="SemiBold"
                                                VerticalAlignment="Center"/>
                                             <Label Grid.Row="3"
                                                Content="T12M EPS"
-                                               Foreground="Orange"
+                                               Foreground="White"
                                                FontSize="12"
                                                FontFamily="Arial"
                                                FontWeight="SemiBold"
                                                VerticalAlignment="Center"/>
                                             <Label Grid.Row="4"
                                                Content="Est EPS"
-                                               Foreground="Orange"
+                                               Foreground="White"
                                                FontSize="12"
                                                FontFamily="Arial"
                                                FontWeight="SemiBold"
                                                VerticalAlignment="Center"/>
                                             <Label Grid.Row="5"
                                                Content="Est PEG"
-                                               Foreground="Orange"
+                                               Foreground="White"
                                                FontSize="12"
                                                FontFamily="Arial"
                                                FontWeight="SemiBold"
@@ -574,7 +829,7 @@
                                             <RowDefinition/>
                                         </Grid.RowDefinitions>
 
-                                        <Grid Grid.Row="0" Background="DimGray">
+                                        <Grid Grid.Row="0" Background="#FF242424">
                                             <Label Content="12) Dividend  |  DVD >>" 
                                                Foreground="White"
                                                FontFamily="Arial"
@@ -591,14 +846,14 @@
 
                                             <Label Grid.Row="0"
                                                Content="Ind Gross Yield"
-                                               Foreground="Orange"
+                                               Foreground="White"
                                                FontSize="12"
                                                FontFamily="Arial"
                                                FontWeight="SemiBold"
                                                VerticalAlignment="Center"/>
                                             <Label Grid.Row="1"
                                                Content="Cash dividend discontinued"
-                                               Foreground="Orange"
+                                               Foreground="White"
                                                FontSize="12"
                                                FontFamily="Arial"
                                                FontWeight="SemiBold"
@@ -623,8 +878,8 @@
                                     </Grid.RowDefinitions>
 
                                     <Border Grid.RowSpan="2"
-                                            BorderBrush="DimGray"
-                                            BorderThickness="0.5"/>
+                                            BorderBrush="#FF242424"
+                                            BorderThickness="1"/>
 
                                     <Grid Grid.Row="0">
                                         <Grid.RowDefinitions>
@@ -632,7 +887,7 @@
                                             <RowDefinition/>
                                         </Grid.RowDefinitions>
 
-                                        <Grid Grid.Row="0" Background="DimGray">
+                                        <Grid Grid.Row="0" Background="#FF242424">
                                             <Label Content="13) Corporate Info" 
                                                Foreground="White"
                                                FontFamily="Arial"
@@ -655,15 +910,15 @@
                                                FontWeight="SemiBold"
                                                VerticalAlignment="Center"/>
                                             <Label Grid.Row="1"
-                                               Content="Chicago, IL, US"
-                                               Foreground="Orange"
+                                               Content="Headquarters"
+                                               Foreground="White"
                                                FontSize="12"
                                                FontFamily="Arial"
                                                FontWeight="SemiBold"
                                                VerticalAlignment="Center"/>
                                             <Label Grid.Row="2"
                                                Content="Empls"
-                                               Foreground="Orange"
+                                               Foreground="White"
                                                FontSize="12"
                                                FontFamily="Arial"
                                                FontWeight="SemiBold"
@@ -676,7 +931,16 @@
                                                FontFamily="Arial"
                                                FontWeight="Light"
                                                VerticalAlignment="Center"
-                                               Margin="15,0,0,0"/>
+                                               Margin="15,0,0,0"
+                                               Cursor="Hand"/>
+                                            <Label Grid.Row="1"
+                                                   Content="{Binding Equity.HQ}"
+                                                   Foreground="White"
+                                                   FontSize="12"
+                                                   FontFamily="Arial"
+                                                   FontWeight="Light"
+                                                   VerticalAlignment="Center"
+                                                   HorizontalAlignment="Right"/>
                                             <Label Grid.Row="2"
                                                Content="{Binding Equity.EmployeeCount}"
                                                Foreground="White"
@@ -694,7 +958,7 @@
                                             <RowDefinition/>
                                         </Grid.RowDefinitions>
 
-                                        <Grid Grid.Row="0" Background="DimGray">
+                                        <Grid Grid.Row="0" Background="#FF242424">
                                             <Label Content="15) Management  |  MGMT >>" 
                                                Foreground="White"
                                                FontFamily="Arial"
@@ -723,7 +987,7 @@
                                                VerticalAlignment="Center"/>
                                             <Label Grid.Row="0"
                                                Content="{Binding Equity.President}"
-                                               Foreground="Orange"
+                                               Foreground="White"
                                                FontSize="12"
                                                FontFamily="Arial"
                                                FontWeight="SemiBold"
@@ -746,7 +1010,7 @@
                                                VerticalAlignment="Center"/>
                                             <Label Grid.Row="2"
                                                Content="{Binding Equity.VisePresident}"
-                                               Foreground="Orange"
+                                               Foreground="White"
                                                FontSize="12"
                                                FontFamily="Arial"
                                                FontWeight="SemiBold"
@@ -769,7 +1033,7 @@
                                                VerticalAlignment="Center"/>
                                             <Label Grid.Row="4"
                                                Content="{Binding Equity.SecondVP}"
-                                               Foreground="Orange"
+                                               Foreground="White"
                                                FontSize="12"
                                                FontFamily="Arial"
                                                FontWeight="SemiBold"
@@ -785,14 +1049,14 @@
                                                    Margin="10,0,0,0"/>
                                             <Label Grid.Row="6"
                                                Content="12M Tot Ret"
-                                               Foreground="Orange"
+                                               Foreground="White"
                                                FontSize="12"
                                                FontFamily="Arial"
                                                FontWeight="SemiBold"
                                                VerticalAlignment="Center"/>
                                             <Label Grid.Row="7"
                                                Content="Beta vs SPX"
-                                               Foreground="Orange"
+                                               Foreground="White"
                                                FontSize="12"
                                                FontFamily="Arial"
                                                FontWeight="SemiBold"
@@ -821,44 +1085,44 @@
                         </Grid>
                         
                     </TabItem>
-                    
-                    
-                    <TabItem Header="2) Issue Info"
-                             Background="DimGray"
-                             Width="125"
+
+
+                    <TabItem Style="{DynamicResource TabItemStyle1}" 
+                             Header="2) Issue Info"
+                             Width="139"
                              Foreground="White"
                              FontFamily="Arial"
                              FontSize="12"
                              FontWeight="SemiBold">
                         
                     </TabItem>
-                    
-                    
-                    <TabItem Header="3) Ratios"
-                             Background="DimGray"
-                             Width="125"
+
+
+                    <TabItem Style="{DynamicResource TabItemStyle1}" 
+                             Header="3) Ratios"
+                             Width="139"
                              Foreground="White"
                              FontFamily="Arial"
                              FontSize="12"
                              FontWeight="SemiBold">
 
                     </TabItem>
-        
-                    
-                    <TabItem Header="4) Revenue / EPS"
-                             Background="DimGray"
-                             Width="125"
+
+
+                    <TabItem Style="{DynamicResource TabItemStyle1}" 
+                             Header="4) Revenue / EPS"
+                             Width="139"
                              Foreground="White"
                              FontFamily="Arial"
                              FontSize="12"
                              FontWeight="SemiBold">
 
                     </TabItem>
-                    
-                    
-                    <TabItem Header="5) Industry Info"
-                             Background="DimGray"
-                             Width="125"
+
+
+                    <TabItem Style="{DynamicResource TabItemStyle1}" 
+                             Header="5) Industry Info"
+                             Width="139"
                              Foreground="White"
                              FontFamily="Arial"
                              FontSize="12"
@@ -870,7 +1134,5 @@
             </Grid>
         </Grid>
 
-        
-        
     </Grid>
 </Page>

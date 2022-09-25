@@ -5,7 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Hale_Terminal.View"
         mc:Ignorable="d"
-        Title="ForgotLoginWindow" Height="450" Width="800">
+        Title="Forgot Login" 
+        Height="200" 
+        Width="500"
+        Background="Black"
+        ResizeMode="NoResize"
+        BorderBrush="White"
+        BorderThickness="1">
     <Grid>
         
     </Grid>

@@ -2,7 +2,7 @@
 <SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Hale_Terminal" GeneratedClassName="Settings">
   <Profiles />
   <Settings>
-    <Setting Name="UpdateAutomatically" Type="System.Boolean" Scope="User">
+    <Setting Name="AutoUpdate" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="AutoDetectIP" Type="System.Boolean" Scope="User">
@@ -12,7 +12,7 @@
       <Value Profile="(Default)">127.0.0.1:8000</Value>
     </Setting>
     <Setting Name="SerialNumber" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">---</Value>
     </Setting>
   </Settings>
 </SettingsFile>

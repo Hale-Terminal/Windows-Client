@@ -1,16 +1,37 @@
-﻿<Window x:Class="Hale_Terminal.View.SettingsWindow"
+﻿<Window x:Class="Hale_Terminal.View.DevWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Hale_Terminal.View"
         mc:Ignorable="d"
-        Title="Advanced Settings" 
-        Height="500" 
+        Title="Dev Window" 
+        Height="450" 
         Width="625"
-        Background="Black"
-        BorderThickness="1"
-        BorderBrush="White">
+        Background="Black">
+    <Grid>
+        <ListView x:Name="LogEntryList" Background="Black" Foreground="White" FontSize="12" FontFamily="Arial">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Timestamp" 
+                                            Width="150"
+                                            DisplayMemberBinding="{Binding Timestamp}">
+
+                    </GridViewColumn>
+                    <GridViewColumn Header="Level" 
+                                            Width="75"
+                                            DisplayMemberBinding="{Binding System}">
+
+                    </GridViewColumn>
+                    <GridViewColumn Header="Message" 
+                                            Width="350"
+                                            DisplayMemberBinding="{Binding Message}">
+
+                    </GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
     <Window.Resources>
         <Style x:Key="FocusVisual">
             <Setter Property="Control.Template">
@@ -310,68 +331,4 @@
             </Setter>
         </Style>
     </Window.Resources>
-    <Grid>
-        <TabControl Background="Black">
-            <TabItem Style="{DynamicResource TabItemStyle1}" 
-                     Header="Serial Number"
-                     FontSize="14">
-                
-            </TabItem>
-
-            <TabItem Style="{DynamicResource TabItemStyle1}" 
-                     Header="Settings"
-                     FontSize="14">
-                
-            </TabItem>
-
-            <TabItem Style="{DynamicResource TabItemStyle1}" 
-                     Header="Adapter Info"
-                     FontSize="14">
-
-                <ListView x:Name="AdapterList"
-                          Background="Black"
-                          Foreground="White"
-                          FontSize="12"
-                          FontFamily="Arial"
-                          FontWeight="Medium"
-                          ItemContainerStyle="{DynamicResource AdapterItem}"/>
-
-            </TabItem>
-
-            <TabItem Style="{DynamicResource TabItemStyle1}" 
-                     Header="Nettools"
-                     FontSize="14">
-                
-            </TabItem>
-
-            <TabItem Style="{DynamicResource TabItemStyle1}" 
-                     Header="Diagnostics"
-                     FontSize="14"
-                     IsEnabled="True">
-
-                <ListView x:Name="LogEntryList" Background="Black" Foreground="White" FontSize="12" FontFamily="Arial" ItemContainerStyle="{DynamicResource LogItemStyle}">
-                    <ListView.View>
-                        <GridView>
-                            <GridViewColumn Header="Timestamp" 
-                                            Width="100"
-                                            DisplayMemberBinding="{Binding Timestamp}">
-                                
-                            </GridViewColumn>
-                            <GridViewColumn Header="Level" 
-                                            Width="100"
-                                            DisplayMemberBinding="{Binding System}">
-
-                            </GridViewColumn>
-                            <GridViewColumn Header="Message" 
-                                            Width="300"
-                                            DisplayMemberBinding="{Binding Message}">
-                                
-                            </GridViewColumn>
-                        </GridView>
-                    </ListView.View>
-                </ListView>
-                
-            </TabItem>
-        </TabControl>
-    </Grid>
 </Window>

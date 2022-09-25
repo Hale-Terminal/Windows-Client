@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -12,21 +11,20 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using System.Windows.Threading;
 
 namespace Hale_Terminal.View
 {
     /// <summary>
-    /// Interaction logic for TerminalWindow.xaml
+    /// Interaction logic for Window1.xaml
     /// </summary>
-    public partial class TerminalWindow : Window
+    public partial class Window1 : Window
     {
-        public TerminalWindow()
+        public Window1()
         {
             InitializeComponent();
             CommandTextBox.Focusable = false;
-            string windowCode = this.GetHashCode().ToString();
         }
+
 
         private void KeyDown(object sender, KeyEventArgs e)
         {
@@ -73,6 +71,9 @@ namespace Hale_Terminal.View
                 }
                 else
                 {
+                    CommandTextBoxGrid.SetValue(Grid.ColumnSpanProperty, 2);
+                    CommandTextBox.Width = this.Width - 100;
+                    CommandTextBox.HorizontalAlignment = HorizontalAlignment.Left;
                     CommandTextBox.Text += e.Key.ToString();
                 }
             }
@@ -88,6 +89,8 @@ namespace Hale_Terminal.View
                         case Key.Enter:
                             parse(CommandTextBox.Text);
                             CommandTextBox.Text = "";
+                            CommandTextBoxGrid.SetValue(Grid.ColumnSpanProperty, 1);
+                            CommandTextBox.Width = 350;
                             break;
                         case Key.Space:
                             CommandTextBox.Text += " ";
@@ -111,6 +114,8 @@ namespace Hale_Terminal.View
                             //CancelButton.RaiseEvent(new RoutedEventArgs(Button.ClickEvent));
                             //CancelButton.Background = new SolidColorBrush(Colors.Aqua);
                             CommandTextBox.Text = "";
+                            CommandTextBoxGrid.SetValue(Grid.ColumnSpanProperty, 1);
+                            CommandTextBox.Width = 350;
                             break;
                         case Key.F1:
                             MessageBox.Show("Help");

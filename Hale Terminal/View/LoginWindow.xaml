@@ -4,25 +4,136 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="Hale Terminal" Height="525" Width="550" Background="Black" ResizeMode="CanMinimize" WindowStartupLocation="CenterScreen">
+        Title="Hale Terminal" 
+        Height="490" 
+        Width="600" 
+        Background="Black" 
+        ResizeMode="CanMinimize" 
+        WindowStartupLocation="CenterScreen"
+        PreviewKeyDown="Window_KeyDown">
 
     <Grid>
-        <Label Content="Hale Terminal" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="25,10,0,0" Foreground="White" FontSize="42" FontFamily="Arial" FontWeight="Bold"/>
+        <Label Content="Hale Terminal" 
+               HorizontalAlignment="Left" 
+               VerticalAlignment="Top" 
+               Margin="25,10,0,0" 
+               Foreground="White" 
+               FontSize="46" 
+               FontFamily="Arial" 
+               FontWeight="Bold"/>
         
-        <Label Content="Login" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="25,95,0,0" Foreground="White" FontSize="16" FontWeight="SemiBold" FontFamily="Arial"/>
-        <TextBox Style="{DynamicResource UsernameTextBoxStyle}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="30,125,0,0" Width="200" FontSize="14" CharacterCasing="Upper"/>
-        <Label Content="Password" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="25,155,0,0" Foreground="White" FontSize="16" FontWeight="SemiBold" FontFamily="Arial"/>
-        <PasswordBox Style="{DynamicResource PasswordTextBoxStyle}" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="30,185,0,0" Width="200" FontSize="14"/>
-        <Button Style="{DynamicResource LoginButtonStyle}" Content="Login" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="130,220,0,0" Width="100" Height="30" Background="#FF353535" Foreground="White" FontSize="14" FontWeight="SemiBold" FontFamily="Arial" Click="LoginButton_Click"/>
+        <Label Content="Login" 
+               HorizontalAlignment="Left" 
+               VerticalAlignment="Top" 
+               Margin="25,95,0,0" 
+               Foreground="White" 
+               FontSize="16" 
+               FontWeight="SemiBold" 
+               FontFamily="Arial"/>
+        <TextBox x:Name="UsernameTextBox" 
+                 Style="{DynamicResource UsernameTextBoxStyle}" 
+                 BorderBrush="Transparent" 
+                 HorizontalAlignment="Left" 
+                 VerticalAlignment="Top" 
+                 Margin="30,125,0,0" 
+                 Width="200" 
+                 FontSize="14" 
+                 FontFamily="Arial"
+                 FontWeight="SemiBold"
+                 CharacterCasing="Upper"
+                 PreviewMouseLeftButtonDown="UsernameTextBox_MouseLeftButtonDown"/>
+        <Label Content="Password" 
+               HorizontalAlignment="Left" 
+               VerticalAlignment="Top" 
+               Margin="25,155,0,0" 
+               Foreground="White" 
+               FontSize="16" 
+               FontWeight="SemiBold" 
+               FontFamily="Arial"/>
+        <PasswordBox x:Name="PasswordTextBox" 
+                     Style="{DynamicResource PasswordTextBoxStyle}" 
+                     BorderBrush="Transparent" 
+                     HorizontalAlignment="Left" 
+                     VerticalAlignment="Top" 
+                     Margin="30,185,0,0" 
+                     Width="200" 
+                     FontSize="14"
+                     PreviewMouseLeftButtonDown="PasswordTextBox_MouseLeftButtonDown"/>
+        <Button x:Name="LoginButton" 
+                Style="{DynamicResource LoginButtonStyle}" 
+                Content="Login" 
+                HorizontalAlignment="Left" 
+                VerticalAlignment="Top" 
+                Margin="130,220,0,0" 
+                Width="100" 
+                Height="30" 
+                Background="#FF353535" 
+                Foreground="White" 
+                FontSize="14" 
+                FontWeight="SemiBold" 
+                FontFamily="Arial" 
+                Click="LoginButton_Click"/>
 
-        <Button Style="{DynamicResource OptionButtonStyle}" Content="Forgot Login Name or Password?" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="25,305,0,0" Foreground="Aqua" FontSize="14" FontWeight="SemiBold" Background="Transparent" FontFamily="Arial" Click="ForgotLoginButton_Click"/>
-        <Button Style="{DynamicResource OptionButtonStyle}" Content="Contact Us" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="25,340,0,0" Foreground="Aqua" FontSize="10" FontWeight="SemiBold" Background="Transparent" FontFamily="Arial" Click="ContactUsButton_Click"/>
-        <Button Style="{DynamicResource OptionButtonStyle}" Content="Advanced Settings" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="25,365,0,0" Foreground="Aqua" FontSize="10" FontWeight="SemiBold" Background="Transparent" FontFamily="Arial" Click="SettingsButton_Click"/>
+        <Button Style="{DynamicResource OptionButtonStyle}" 
+                Content="Forgot Login Name or Password?" 
+                HorizontalAlignment="Left" 
+                VerticalAlignment="Top" 
+                Margin="25,280,0,0" 
+                Foreground="Aqua" 
+                FontSize="14" 
+                FontWeight="SemiBold" 
+                Background="Transparent" 
+                FontFamily="Arial" 
+                Click="ForgotLoginButton_Click"/>
+        <Button Style="{DynamicResource OptionButtonStyle}" 
+                Content="Contact Us" 
+                HorizontalAlignment="Left" 
+                VerticalAlignment="Top" 
+                Margin="25,315,0,0" 
+                Foreground="Aqua" 
+                FontSize="10" 
+                FontWeight="SemiBold" 
+                Background="Transparent" 
+                FontFamily="Arial" 
+                Click="ContactUsButton_Click"/>
+        <Button Style="{DynamicResource OptionButtonStyle}" 
+                Content="Advanced Settings" 
+                HorizontalAlignment="Left" 
+                VerticalAlignment="Top" 
+                Margin="25,340,0,0" 
+                Foreground="Aqua" 
+                FontSize="10" 
+                FontWeight="SemiBold" 
+                Background="Transparent" 
+                FontFamily="Arial" 
+                Click="SettingsButton_Click"/>
 
-        <Label x:Name="infoLabel" Content="S/N ---  |  Version ---" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,365,25,0" Foreground="DimGray" FontSize="12" FontFamily="Arial"/>
+        <Label x:Name="infoLabel" 
+               Content="S/N ---  |  Version ---" 
+               HorizontalAlignment="Right" 
+               VerticalAlignment="Top" 
+               Margin="0,340,50,0" 
+               Foreground="DimGray" 
+               FontSize="12" 
+               FontFamily="Arial"/>
 
-        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="10,0,10,5" Foreground="Gray" FontSize="10" FontFamily="Arial" Height="75" TextWrapping="Wrap" LineStackingStrategy="BlockLineHeight" LineHeight="17" Text="The HALE TERMINAL service and data products are owned and distributed by Hale Terminal LLC. Hale Terminal LLC provides HALE TERMINAL with global marketing data and operational support and service. Hale Terminal LLC believes the information herien came from reliable sources, but does not guarentee its accuracy. No information or opinion herein constitutes a solicitation of the purchase or sale of securities or commodities."/>
-        <Image Source="/Images/logo.PNG" Width="200" Height="200" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,75,50,0"/>
+        <TextBlock HorizontalAlignment="Center" 
+                   VerticalAlignment="Bottom" 
+                   Margin="10,0,10,5" 
+                   Foreground="Gray" 
+                   FontSize="10" 
+                   FontFamily="Arial" 
+                   Height="75" 
+                   TextWrapping="Wrap" 
+                   LineStackingStrategy="BlockLineHeight" 
+                   LineHeight="17" 
+                   Text="The HALE TERMINAL PLATFORM and data products are owned and distributed by Hale Terminal LLC. Hale Terminal LLC provides the HALE TERMINAL PLATFORM with global marketing data and operational support and service. Hale Terminal LLC believes the information herien came from reliable sources, but does not guarentee its accuracy. No information or opinion herein constitutes a solicitation of the purchase or sale of securities or commodities."/>
+        <Image Source="/Images/logo.PNG" 
+               Width="200" 
+               Height="200" 
+               HorizontalAlignment="Right" 
+               VerticalAlignment="Top" 
+               Margin="0,75,50,0"/>
 
     </Grid>
 
@@ -72,9 +183,7 @@
                                 <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Pressed.Border}"/>
                             </Trigger>
                             <Trigger Property="IsEnabled" Value="false">
-                                <Setter Property="Background" TargetName="border" Value="{StaticResource Button.Disabled.Background}"/>
-                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource Button.Disabled.Border}"/>
-                                <Setter Property="TextElement.Foreground" TargetName="contentPresenter" Value="{StaticResource Button.Disabled.Foreground}"/>
+                                <Setter Property="Opacity" TargetName="border" Value="0.56"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -99,7 +208,7 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type PasswordBox}">
-                        <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="Transparent" BorderThickness="2" SnapsToDevicePixels="True" CornerRadius="3">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="2" SnapsToDevicePixels="True" CornerRadius="3">
                             <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
                         </Border>
                         <ControlTemplate.Triggers>
@@ -109,7 +218,7 @@
                             <Trigger Property="IsMouseOver" Value="true">
                             </Trigger>
                             <Trigger Property="IsKeyboardFocused" Value="true">
-                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource TextBox.Focus.Border}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="Aqua"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -142,7 +251,7 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type TextBox}">
-                        <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="Transparent" BorderThickness="2" SnapsToDevicePixels="True" CornerRadius="3">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="2" SnapsToDevicePixels="True" CornerRadius="3">
                             <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
                         </Border>
                         <ControlTemplate.Triggers>
@@ -152,7 +261,7 @@
                             <Trigger Property="IsMouseOver" Value="true">
                             </Trigger>
                             <Trigger Property="IsKeyboardFocused" Value="true">
-                                <Setter Property="BorderBrush" TargetName="border" Value="{StaticResource TextBox.Focus.Border1}"/>
+                                <Setter Property="BorderBrush" TargetName="border" Value="aqua"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
